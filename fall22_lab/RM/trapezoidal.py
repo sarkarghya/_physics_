@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import csv
 
 # METHOD1: define trapezoidal function by yourself
 def trapezoidal1(f, a, b, n):
@@ -22,8 +23,13 @@ print('The integral of y=x^2 using trapezoidal rule is:', s1)
 
 # generate training data
 # replace x, y data sets with your (force, position) measurements 
-x = np.arange(5, 10, 0.05)
-y = x**2
+with open('file.csv', newline='') as f:
+    reader = csv.reader(f)
+    data = [tuple(row) for row in reader]
+
+x = [x[0] for x in data]
+y = [x[1]**2 for x in data]
+
 '''numpy.trapz(y, x=None, dx=1.0, axis=-1)'''
 '''integrate along the given axis using the composite trapezoidal rule'''
 '''integrate y(x) along given axis'''

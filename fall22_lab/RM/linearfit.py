@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import csv
+
 
 def LineFit(x, y):
     '''Returns slope and y-intercept of linear fit to (x,y) data set'''
@@ -10,8 +12,12 @@ def LineFit(x, y):
                 
 # generate training data
 # replace this part with your (velocity^2 , position) data set
-x = np.arange(0, 10, 0.1)
-y = 1 + (x * 2) + (np.random.normal(0, 1, len(x)) * 5)
+with open('file.csv', newline='') as f:
+    reader = csv.reader(f)
+    data = [tuple(row) for row in reader]
+
+x = [x[0] for x in data]
+y = [x[1]**2 for x in data]
 
 # compute coefficients for simple linear regression
 # using predefined LineFit() function
